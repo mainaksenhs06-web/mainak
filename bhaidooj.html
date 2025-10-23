@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhai Dooj Gift for Mou ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for easy color management */
+        :root {
+            --primary-color: #d84315; /* Deep Orange */
+            --secondary-color: #ffab00; /* Amber for glow */
+            --background-start: #fff3e0; /* Lightest Cream */
+            --background-end: #ffcc80; /* Peach */
+            --text-color-dark: #4e342e; /* Brown */
+            --text-color-light: #fff8e1; /* Off-White */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top, var(--background-start) 0%, var(--background-end) 100%);
+            color: var(--text-color-dark);
+            overflow-x: hidden;
+            text-align: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- Header Styles (Optimized for Mobile Font Size) --- */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px; /* Slightly less padding for mobile */
+            font-size: 1.8em; /* Adjusted font size */
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            animation: slideInDown 1s ease-out;
+        }
+
+        /* =====================================================
+        --- UPDATED Photo Carousel Styles for Square (1:1) & Contain ---
+        =====================================================
+        */
+        .photo-carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px auto; /* Reduced margin */
+            width: 95vw; /* Takes up most of the mobile screen width */
+            max-width: 450px; /* Maintains a sensible max size */
+            
+            /* KEY CHANGE: Set 1:1 Square Aspect Ratio */
+            height: 0; 
+            padding-bottom: 100%; 
+            
+            position: relative;
+            overflow: hidden; 
+            border-radius: 15px; /* Slightly smaller radius for mobile */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background-color: var(--text-color-light); 
+        }
+
+        .photo-carousel img {
+            width: 100%; 
+            height: 100%;
+            position: absolute; 
+            top: 0;
+            left: 0;
+            
+            /* Retained for full visibility: Ensures the whole image is visible (fits) */
+            object-fit: contain; 
+            
+            opacity: 0; 
+            transition: opacity 1s ease-in-out, transform 0.5s ease;
+            border-radius: 0; 
+            padding: 0; 
+            box-sizing: border-box;
+            background-color: transparent; 
+        }
+
+        .photo-carousel img.active {
+            opacity: 100%;
+            transform: scale(1.02); 
+        }
+        /* =====================================================
+        --- END UPDATED Photo Carousel Styles ---
+        =====================================================
+        */
+        
+        /* --- Message Box Styles (Optimized for Mobile) --- */
+        .message {
+            background-color: var(--text-color-light);
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 30px auto;
+            padding: 25px; /* Reduced padding */
+            width: 90%; /* Wider for mobile screen usage */
+            max-width: 650px;
+            font-size: 1.2em; /* Adjusted font size for readability */
+            color: var(--text-color-dark);
+            font-weight: 500;
+            line-height: 1.5;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1.5s ease-out 1s forwards;
+        }
+        
+        .message p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4em; /* Adjusted quote size */
+            color: var(--primary-color);
+            margin: 5px 0;
+        }
+
+        .names {
+            font-size: 1.1em;
+            margin-top: 15px;
+            color: #6d4c41;
+            font-weight: 700;
+        }
+
+        /* --- Diya/Icon Styles --- */
+        .diya {
+            width: 60px; /* Slightly smaller diya */
+            margin: 10px;
+            animation: glow 1.8s infinite alternate;
+            vertical-align: middle;
+        }
+
+        /* --- Footer Styles --- */
+        footer {
+            margin: 40px 0 20px;
+            font-size: 1em;
+            color: #5d4037;
+            font-weight: 500;
+            animation: fadeIn 1.5s ease-out 1.5s forwards;
+            opacity: 0;
+        }
+
+        /* --- Keyframe Animations (Unchanged) --- */
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 8px var(--secondary-color)); }
+            to { filter: drop-shadow(0 0 25px var(--secondary-color)); }
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Confetti Animation (Unchanged) --- */
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0;
+            animation: confetti-fall 8s ease-in infinite;
+        }
+
+        .confetti-piece:nth-child(2n) { background-color: var(--secondary-color); }
+        .confetti-piece:nth-child(3n) { background-color: #a44a3f; }
+        .confetti-piece:nth-child(4n) { background-color: var(--text-color-light); }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confetti">
+    </div>
+
+    <header>🪔 Happy Bhai Dooj, Mou 🪔</header>
+
+     <div class="message">
+        <p>“You are the best sister in the world. May our bond grow stronger with every passing year. Be happy Every time. Love you."</p>
+        <div class="names">— Mainak Sen 🫂 Mou Nandi</div>
+    </div>
+
+    <div class="photo-carousel">
+        <img src="IMAGE_1.jpg" alt="Mainak and Mou Photo 1" class="active">
+        <img src="IMAGE_2.jpg" alt="Mainak and Mou Photo 2">
+        <img src="IMAGE_3.jpg" alt="Mainak and Mou Photo 3">
+    </div>
+
+
+    <footer>Wishing you endless happiness, love, and success. 💫</footer>
+
+    <audio id="bhaiDoojAudio" autoplay loop>
+        <source src="YOUR_BHAI_DOOJ_MUSIC_LINK.mp3" type="audio/mpeg">
+        Your browser does not not support the audio element.
+    </audio>
+
+    <script>
+        // --- Photo Carousel Logic ---
+        const images = document.querySelectorAll('.photo-carousel img');
+        let currentImageIndex = 0;
+
+        function nextImage() {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].classList.add('active');
+        }
+
+        setInterval(nextImage, 4000);
+        
+        // --- Confetti Piece Generation Logic ---
+        const confettiContainer = document.querySelector('.confetti');
+        const colors = ['#d84315', '#ffab00', '#a44a3f', '#fff8e1'];
+
+        for (let i = 0; i < 50; i++) {
+            const piece = document.createElement('div');
+            piece.classList.add('confetti-piece');
+            piece.style.left = `${Math.random() * 100}vw`;
+            piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            piece.style.animationDelay = `${Math.random() * 6}s`;
+            piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+            confettiContainer.appendChild(piece);
+        }
+
+        // --- Autoplay Fix for Modern Browsers ---
+        document.addEventListener('click', function() {
+            const audio = document.getElementById('bhaiDoojAudio');
+            if (audio.paused) {
+                audio.play().catch(error => {
+                    // Autoplay blocked
+                });
+            }
+        });
+    </script>
+</body>
+</html>
